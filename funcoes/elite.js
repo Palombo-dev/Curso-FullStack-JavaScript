@@ -14,3 +14,6 @@ const tamanho = function(b){
 //adicionando função a array
 const array = [function(b){}]
 
+ola1 = () => 'ola'
+
+console.log(ola1())
