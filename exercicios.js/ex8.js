@@ -10,3 +10,18 @@ String: “10 20 20 8 25 3 0 30 1”
 Retorno: [3, 7] (Significa que ele bateu três vezes seu recorde de melhor pontuação e a pior pontuação
 aconteceu no sétimo jogo.)*/
 
+let games = [10, 20, 20, 8, 25, 3, 0, 30, 1]
+let worstGame = games[0]; let bestPoint = 0; let breakRecord = -1; let i = -1; let cont = 0
+
+function toCompare(game){
+    i ++
+    if(bestPoint < game){
+        bestPoint = game
+        breakRecord++
+    }
+    if(worstGame < game){
+        cont = i
+    }
+}
+games.forEach(toCompare)
+console.log([breakRecord, cont])
