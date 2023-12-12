@@ -38,5 +38,4 @@ function ParDeBarreiras(altura, abertura, x){
     this.setX(x)
 }
 
-const b = new ParDeBarreiras(700, 200, 400)
-document.querySelector('[wm-flappy]').appendChild(b.elemento)
+
