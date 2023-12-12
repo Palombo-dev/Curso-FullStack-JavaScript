@@ -38,4 +38,25 @@ function ParDeBarreiras(altura, abertura, x){
     this.setX(x)
 }
 
+function Barreiras(altura, largura, espaco, notificarPonto){
+    this.pares = [
+        new ParDeBarreiras(altura, abertua, largura),
+        new ParDeBarreiras(altura, abertua, largura + espaco),
+        new ParDeBarreiras(altura, abertua, largura + espaco * 2),
+        new ParDeBarreiras(altura, abertua, largura + espaco * 3)
+    ]
+    const deslocamento = 3
+    this.animar = () => {
+        this.pares.forEach(par => {
+            par.setX(par.getX() - deslocamento)
 
+            if ( par.getX() < - par.getLargura()){
+                par.setX(par.getX() + espaco * this.pares.length)
+                par.sortearArbetura()
+            }
+            
+            const meio = largura / 2
+            const cruzouOMeio = par.getX() + deslocamento >= meio && par.get
+        })
+    }
+}
