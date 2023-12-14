@@ -37,26 +37,37 @@ function ParDeBarreiras(altura, abertura, x){
     this.sortearArbetura()
     this.setX(x)
 }
+//const b = new ParDeBarreiras(700, 200, 500)
+//document.querySelector('[wm-flappy]').appendChild(b.elemento)
 
-function Barreiras(altura, largura, espaco, notificarPonto){
+function Barreiras(altura, largura, abertura, espaco, notificarPonto){
     this.pares = [
-        new ParDeBarreiras(altura, abertua, largura),
-        new ParDeBarreiras(altura, abertua, largura + espaco),
-        new ParDeBarreiras(altura, abertua, largura + espaco * 2),
-        new ParDeBarreiras(altura, abertua, largura + espaco * 3)
+        new ParDeBarreiras(altura, abertura, largura),
+        new ParDeBarreiras(altura, abertura, largura + espaco),
+        new ParDeBarreiras(altura, abertura, largura + espaco * 2),
+        new ParDeBarreiras(altura, abertura, largura + espaco * 3)
     ]
+
     const deslocamento = 3
     this.animar = () => {
         this.pares.forEach(par => {
             par.setX(par.getX() - deslocamento)
 
-            if ( par.getX() < - par.getLargura()){
+            if (par.getX() < - par.getLargura()){
                 par.setX(par.getX() + espaco * this.pares.length)
                 par.sortearArbetura()
             }
             
             const meio = largura / 2
-            const cruzouOMeio = par.getX() + deslocamento >= meio && par.get
+            const cruzouOMeio = par.getX() + deslocamento >= meio && par.getX() < meio
+            if(cruzouOMeio) notificarPonto()
         })
     }
 }
+
+const barreiras = new Barreiras(700, 1200, 200, 400)
+const areaDoJogo = document.querySelector('[wm-flappy]')
+barreiras.pares.forEach(par => areaDoJogo.appendChild(par.elemento))
+setInterval(() =>{
+    barreiras.animar()
+}, 20)
