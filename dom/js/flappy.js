@@ -14,6 +14,11 @@ function Barreira(reversa = false){
 
 }
 
+function refresh(){
+    this.elemento = novoElemento('div', 'refresh')
+    this.elemento.innerText = 'Game Over'; 
+}
+
 function ParDeBarreiras(altura, abertura, x){
     this.elemento = novoElemento('div', 'par-de-barreiras')
 
@@ -148,15 +153,25 @@ function FlappyBird() {
     areaDoJogo.appendChild(passaro.elemento)
     barreiras.pares.forEach(par => areaDoJogo.appendChild(par.elemento))
 
+    function reload(){
+        location.reload();
+       
+    }
     this.start = () => {
+        const btn = new refresh()
+        
         const temporizador = setInterval(() => {
             barreiras.animar()
             passaro.animar()
+            
 
             if (colidiu(passaro, barreiras)){
                 clearInterval(temporizador)
-                location.reload();
+
+                areaDoJogo.appendChild(btn.elemento)
             }
+            document.getElementsByClassName("refresh")[0].onclick = reload;
+
         }, 20)
     }
     
