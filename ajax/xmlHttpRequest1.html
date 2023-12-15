@@ -31,7 +31,7 @@
 
         function criarTabela(estados){
             const linhas = estados.map(estado => {
-                    const tdID = document.createElement('td')
+                    const tdId = document.createElement('td')
                     tdId.innerHTML = estado.id
 
                     const tdNome = document.createElement('td')
@@ -42,7 +42,7 @@
 
                     const tr = document.createElement('tr')
 
-                    tr.appendChild(tdID)
+                    tr.appendChild(tdId)
                     tr.appendChild(tdNome)
                     tr.appendChild(tdSigla)
 
