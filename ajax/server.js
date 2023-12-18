@@ -22,8 +22,16 @@ app.post('/upload', (req, res) => {
         res.end('concluido com sucesso')
     })
 })
+
 app.use(express.static('.'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+
+app.post('/formulario', (req, res) => {
+    res.send({
+        ...req.body,
+        id: 1
+    })
+})
 
 app.listen(8080, () => console.log('executando...'))
