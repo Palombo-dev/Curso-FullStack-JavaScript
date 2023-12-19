@@ -21,5 +21,8 @@
     "gulp-uglifycss": "1.0.9",
     "node-sass": "^9.0.0",
     "typescript": "2.8.3"
+  },
+  "dependencies": {
+    "sass": "^1.69.5"
   }
 }
