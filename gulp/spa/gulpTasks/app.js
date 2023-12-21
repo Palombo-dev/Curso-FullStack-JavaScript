@@ -6,20 +6,31 @@ const uglifycss = require('gulp-uglifycss')
 const concat = require('gulp-concat')
 const htmlmin = require('gulp-htmlmin')
 
-function appHtml(cb){
-    return cb()
+function appHtml(){
+    return gulp.src('src/**/*.html')
+    .pipe(htmlmin({ collapseWhitespace: true}))
+    .pipe(gulp.dest('build'))
 }
 
-function appCss(cb){
-    return cb()
+function appCss(){
+    return gulp.src('src/assets/sass/index.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(uglifycss({"uglyfyComments": true}))
+    .pipe(concat('app.min.css'))
+    .pipe(gulp.dest('build/assets/css'))
 }
 
-function appJS(cb){
-    return cb()
+function appJS(){
+    return gulp.src('src/assets/js/**/*.js')
+    .pipe(babel({ presets: ['ENV'] }))
+    .pipe(uglify())
+    .pipe(concat('app.min.js'))
+    .pipe(gulp.dest('build/assets/js'))
 }
 
-function appIMG(cb){
-    return cb()
+function appIMG(){
+    return gulp.src('src/assets/imgs/**/*.*')
+    .pipe(gulp.dest('build/assets/imgs'))
 }
 
 module.exports = {
