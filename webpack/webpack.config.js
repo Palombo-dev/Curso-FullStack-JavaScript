@@ -1,19 +1,42 @@
+const modoDev = process.env.NODE_ENV !== 'production'
 const webpack = require('webpack')
+const TerserPlugin = require('terser-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+
 
 module.exports = {
-    mode: 'development',
+    mode: modoDev ? 'development' : 'production',
     entry: './src/principal.js',
     output: {
         filename: 'principal.js',
         path: __dirname + '/public'
     },
+    optimization: {
+        minimizer: [
+            new OptimizeCssAssetsPlugin({})
+        ]
+    },
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: "estilo.css"
+        }),
+        new TerserPlugin({
+            parallel: true,
+            terserOptions: {
+                ecma: 6
+            }
+        })
+    ],
     module: {
         rules: [
             {
-                test: /\.css$/,
+                test: /\.s?[ac]ss$/,
                 use: [
-                    'style-loader', //adiciona CSS a DOm injetando <style>
-                    'css-loader'//interpreta @import, url()...
+                    MiniCssExtractPlugin.loader,
+                    //'style-loader', //adiciona CSS a DOm injetando <style>
+                    'css-loader',//interpreta @import, url()...
+                    'sass-loader'
                 ]
             }
         ]
