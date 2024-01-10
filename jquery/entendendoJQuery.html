@@ -14,6 +14,17 @@
     <div>2</div>
 
     <script>
-        // ...
+        const arrayTeste = [1, 2, 3]
+        $('div').hide(2000).show(2000).fadeOut(2000).fadeIn(2000)
+        console.log($('div').get(0))
+        console.log($.isEmptyObject({ }))
+        console.log(jQuery.inArray(3, arrayTeste))
+
+        $.fn.fundoRoxo = function () {
+            this.css('background-color', 'purple')
+            return this
+        }
+
+        $('body').fundoRoxo().fadeOut(1000)
     </script>
 </body>
