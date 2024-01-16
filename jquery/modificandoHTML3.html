@@ -19,7 +19,18 @@
             { nome: 'Carlos', nota: 7.6 },
             { nome: 'Julia', nota: 9.7 }
         ]
+
+        var table = $('<table>')
+        //$('#conteudo').append('<table></table>')
+        $.each(pessoas, function(index, pessoa){
+            linha = $('<tr>')
+            linha.append(`<td>${pessoa.nome}</td>`)
+            linha.append(`<td>${pessoa.nota}</td>`)
+            table.append(linha)
+            //$('#conteudo > table').append(linha)
+        })
+
+        $('#conteudo').append(table)
         
-        // ...
     </script>
 </body>
