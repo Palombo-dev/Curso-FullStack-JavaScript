@@ -1,3 +1,8 @@
 export default function Inicio() {
-    return "Inicio 2"
+    return (
+        <div>
+            <h1>Fundamentos de Nextjs e React</h1>
+            <h2>Estudando esse framework</h2>
+        </div> 
+    )
 }
